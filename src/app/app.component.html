@@ -13,8 +13,8 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="over" class="sidenav">
     <mat-nav-list>
-      <a mat-list-item routerLink="/add-assignment">Ajouter un assignment</a>
-      <a mat-list-item routerLink="assignments-details/:id">Liste assignments</a>
+      <a mat-list-item routerLink="/add-assignment" (click)="closeSidenav()">Ajouter un assignment</a>
+      <a mat-list-item routerLink="assignments-details/:id" (click)="closeSidenav()">Liste assignments</a>
     </mat-nav-list>
   </mat-sidenav>
 

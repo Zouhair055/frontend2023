@@ -44,12 +44,11 @@ onSaveAssignment() {
   // on récupère les valeurs dans le formulaire
   this.assignment.nom = this.nomAssignment;
   this.assignment.dateDeRendu = this.dateDeRendu;
+
   this.assignmentsService.updateAssignment(this.assignment)
-     .subscribe(reponse => {
-     console.log("réponse du serveur edit : " + reponse.message);
-     this.router.navigate(['/home']);
-     //this.router.navigate(['/assignments-details/:id']);
-   })
-  
+    .subscribe(reponse => {
+      console.log("réponse du serveur edit : " + reponse.message);
+      this.router.navigate(['/home']);
+    });
 }
 }

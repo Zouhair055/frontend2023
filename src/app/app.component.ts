@@ -47,4 +47,7 @@ login() {
   onLoginSuccess() {
     this.closeLoginDialog();
   }
+  closeSidenav() {
+    this.sidenav.close();
+  }
 }

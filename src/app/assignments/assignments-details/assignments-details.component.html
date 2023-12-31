@@ -18,7 +18,7 @@
     </nav>
   </mat-list>
 
-  <div *ngIf="showDetails">
+  <div *ngIf="showDetails" class="show-details">
     <mat-card *ngIf="assignmentSelectionne" class="selected-assignment">
       <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
       <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
