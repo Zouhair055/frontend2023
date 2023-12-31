@@ -1,0 +1,85 @@
+/* Styles for container3 */
+.container3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+
+  .assignment-list {
+    text-align: left;
+  }
+  
+  .assignment-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .assignment-item:hover {
+    background-color: #f8f8f8; 
+  }
+  
+  .rendu-text {
+    color: #ffffff; 
+    background-color: #673ab7;
+  }
+  
+  .non-rendu-text {
+    color: #000000; 
+  }
+  
+  .selected-assignment {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .checkbox {
+    color: #ffffff;
+    background-color: #673ab7;
+    line-height: 36px;
+    font-weight: 500;
+    padding: 0 16px;
+    border-radius: 4px;
+    margin-right: 20px; 
+  }
+  
+  .edit-button {
+    margin-right: 10px;
+  }
+  
+  .delete-button {
+    color: #ffffff;
+    background-color: #673ab7;
+    margin-left: 20px; 
+  }
+  
+  
+  .edit-button:hover,
+  .delete-button:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .submit-button1 {
+    position: fixed; 
+    bottom: 150px; 
+    right: 678px; 
+    
+    align-self: center;
+    margin-top: 15px;
+    background-color: #673ab7; 
+    color: #fff; 
+    transition: background-color 0.3s ease;
+  }

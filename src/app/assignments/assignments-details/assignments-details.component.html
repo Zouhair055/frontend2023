@@ -1,0 +1,55 @@
+<div class="page-container container3">
+  <mat-list *ngFor="let assignment of assignments" class="assignment-list">
+    <nav>
+      <a routerLink="/assignments-details/{{assignment.id}}">
+    <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
+    <mat-list-item (click)="onAssignmentClick(assignment)" class="assignment-item">
+      <p appRendu *ngIf="assignment.rendu; else nomsoumis" class="rendu-text">
+        Devoir intitulé {{assignment.nom}} a été rendu.
+      </p>
+      <ng-template #nomsoumis>
+        <p class="non-rendu-text">
+          Le devoir {{assignment.nom}} n'a pas été rendu.
+        </p>
+      </ng-template>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+    </a>
+    </nav>
+  </mat-list>
+
+  <div *ngIf="showDetails">
+    <mat-card *ngIf="assignmentSelectionne" class="selected-assignment">
+      <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
+      <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
+
+      <div id="bottom" class="card-actions">
+        <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()" class="checkbox">
+          DEVOIR RENDU
+        </mat-checkbox>
+        <a routerLink="/assignments-details/{{assignmentTransmis.id}}/edit">
+          <button mat-stroked-button
+                  color="primary"
+                  type="submit"
+                  [disabled]="!isAdmin()"
+                  class="edit-button">
+            EDIT
+          </button>
+        </a>
+        <button mat-stroked-button
+                color="warn"
+                type="submit"
+                (click)="onDelete()"
+                [disabled]="!isAdmin()"
+                class="delete-button">
+          DELETE
+        </button>
+      </div>
+    </mat-card>
+  </div>
+  <div class="button-container">
+    <button mat-stroked-button color="primary" class="submit-button1" routerLink="/add-assignment">
+      Ajouter un devoir
+    </button>
+  </div>
+</div>

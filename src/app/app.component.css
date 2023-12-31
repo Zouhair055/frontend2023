@@ -1,0 +1,46 @@
+.mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(to right, #673ab7, #a742c7); /* Dégradé de couleur de gauche à droite */
+  color: #fff; /* Couleur du texte */
+}
+
+.mat-toolbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #a742c7, #673ab7); /* Dégradé de couleur de gauche à droite inversé */
+  animation: gradientAnimation 5s linear infinite;
+  z-index: -1; /* Placez l'élément ::before derrière le contenu de la barre d'outils */
+}
+
+@keyframes gradientAnimation {
+  to {
+    left: 100%;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.sidenav-container {
+  height: 90.5%;
+}
+  
+  .sidenav {
+    width: 200px;
+  }
+  
+  .mat-sidenav-content {
+    margin-left: 0; 
+    transition: margin 0.3s;
+  }
+  
+
+
+

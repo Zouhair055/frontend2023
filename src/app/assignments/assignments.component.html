@@ -1,0 +1,33 @@
+<main class="container1">
+  <div class="center-content">
+    <div class="AjouterBtn">
+      <a routerLink="/add-assignment">
+        <button mat-flat-button color="accent">
+          Ajouter Assignment
+        </button>
+    </a>
+  </div>
+
+  <h1>Gestion Des Devoirs</h1>
+  <mat-list *ngFor="let a of assignments">
+    <nav>
+      <a routerLink="/assignment/{{a.id}}">
+        <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
+        <mat-list-item (click)="onAssignmentClicke(a)">
+          <p *ngIf="a.rendu; else nonsoumis" class="rendu">
+            {{a.nom}}
+            rendu : {{a.rendu}}.
+          </p>
+          <ng-template #nonsoumis>
+            <p class="non-rendu">
+              {{a.nom}}, n'a pas été rendu à temps
+              (date : {{a.dateDeRendu | date}})
+            </p>
+          </ng-template>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </a>
+    </nav>
+  </mat-list>
+</div>
+</main>

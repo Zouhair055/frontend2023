@@ -1,0 +1,28 @@
+<!-- app.component.html -->
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="title">{{ title }}</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/home">Home</button>
+  <button mat-button *ngIf="!authService.loggedIn" routerLink="/login">Login</button>
+  <button mat-button *ngIf="isLoggedIn" (click)="login()">Logout</button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="sidenav">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/add-assignment">Ajouter un assignment</a>
+      <a mat-list-item routerLink="assignments-details/:id">Liste assignments</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+
+    <app-login *ngIf="showLoginDialog" (close)="closeLoginDialog()" (loginSuccess)="onLoginSuccess()">
+      <p>Testing content inside login component</p>
+    </app-login>
+  </mat-sidenav-content>
+</mat-sidenav-container>
