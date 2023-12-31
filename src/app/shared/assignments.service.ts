@@ -15,7 +15,7 @@ export class AssignmentsService {
               private http:HttpClient) { }
 
 //url = "http://localhost:8010/api/assignments";
-url = "https://back-end-2023-angular.onrender.com/api/assignments"                                
+url = "https://back-end-2023-angular.onrender.com/api/"                                
 getAssignments():Observable<Assignment[]>{
     return this.http.get<Assignment[]>(this.url);
 }
