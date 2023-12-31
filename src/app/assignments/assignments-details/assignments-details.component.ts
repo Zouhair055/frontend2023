@@ -59,16 +59,27 @@ export class AssignmentsDetailsComponent implements OnInit {
   }
 
   onAssignmentRendu() {
-   //this.assignmentSelectionne.rendu = true;
-   if(this.assignmentTransmis){
-    this.assignmentTransmis.rendu = true;
-    this.assignmentService.updateAssignment(this.assignmentTransmis)
-      .subscribe(reponse => {
-      console.log("réponse du serveur detail: " + reponse.message);
-      this.router.navigate(['/home']);
-    })
-   }
+    if (this.assignmentTransmis) {
+      this.assignmentTransmis.rendu = true;
+
+      this.assignmentService.updateAssignment(this.assignmentTransmis)
+        .subscribe(reponse => {
+          console.log("réponse du serveur detail: " + reponse.message);
+
+          // Assurez-vous que this.assignmentTransmis est défini avant de le passer à deleteAssignement
+          if (this.assignmentTransmis) {
+            // Supprimez l'ancien devoir de la liste
+            this.assignmentService.deleteAssignement(this.assignmentTransmis)
+              .subscribe(() => {
+                console.log("Ancien devoir rendu supprimé");
+              });
+          }
+
+          this.router.navigate(['/home']);
+        });
+    }
   }
+  
 
   onDelete() {
     if (this.assignmentTransmis){
