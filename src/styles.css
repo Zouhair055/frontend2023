@@ -10,7 +10,7 @@ body::before {
   content: 'MIAGE';
   position: fixed;
   top: 85%;
-  left: 50%;
+  left: 90%;
   transform: translate(-50%, -50%);
   font-size: 32px;
   font-weight: bold;
@@ -27,5 +27,6 @@ body::before {
     color: #673ab7; 
   }
 }
-  
+
+
   

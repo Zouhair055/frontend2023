@@ -74,8 +74,8 @@
   
   .submit-button1 {
     position: fixed; 
-    bottom: 150px; 
-    right: 678px; 
+    top: 100px; 
+    right: 75px; 
     
     align-self: center;
     margin-top: 15px;
