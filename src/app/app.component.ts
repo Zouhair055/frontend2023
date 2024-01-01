@@ -51,6 +51,7 @@ login() {
   closeSidenav() {
     this.sidenav.close();
   }
+
   peuplerBD() {
     this.assignmentsService.peuplerBDavecForkJoin()
       .subscribe(() => {

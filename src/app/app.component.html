@@ -5,9 +5,9 @@
   </button>
   <span class="title">{{ title }}</span>
   <span class="spacer"></span>
-  <button mat-button (click)="deleteAllAssignments()">Vider BD</button>
-  <button mat-button (click)="peuplerBD()">Peupler BD</button>  
   <button mat-button routerLink="/home">Home</button>
+  <button mat-button (click)="deleteAllAssignments()">Vider BD</button>
+  <button mat-button (click)="peuplerBD()">PeuplerBD</button>
   <button mat-button *ngIf="!authService.loggedIn" routerLink="/login">Login</button>
   <button mat-button *ngIf="isLoggedIn" (click)="login()">Logout</button>
 </mat-toolbar>

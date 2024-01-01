@@ -6,7 +6,6 @@ import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
 import { assignmentsData } from './data';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +20,7 @@ url = "http://localhost:8010/api/assignments";
 getAssignments():Observable<Assignment[]>{
     return this.http.get<Assignment[]>(this.url);
 }
+
 
 peuplerBDavecForkJoin():Observable<any> {
   let appelsVersAddAssignment:Observable<any>[] = [];
@@ -87,9 +87,5 @@ peuplerBDavecForkJoin():Observable<any> {
 
   deleteAllAssignments(): Observable<any> {
     return this.http.delete(this.url);
-  }
-
-  getAssignmentsPagine(page:number, limit:number):Observable<any> {
-    return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit);
   }
 }
