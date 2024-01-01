@@ -1,9 +1,11 @@
 // assignments.service.ts
 import { Injectable } from '@angular/core';
 import { Assignment } from '../assignments/assignment.model';
-import { Observable, Subject, catchError, map, of, tap } from 'rxjs';
+import { Observable, Subject, catchError, forkJoin, map, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
+import { assignmentsData } from './data';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,21 @@ getAssignments():Observable<Assignment[]>{
     return this.http.get<Assignment[]>(this.url);
 }
 
+peuplerBDavecForkJoin():Observable<any> {
+  let appelsVersAddAssignment:Observable<any>[] = [];
+
+  assignmentsData.forEach(a => {
+    const nouvelAssignment = new Assignment();
+    nouvelAssignment.id = a.id;
+    nouvelAssignment.nom = a.nom;
+    nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
+    nouvelAssignment.rendu = a.rendu;
+
+    appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment))
+  });
+
+  return forkJoin(appelsVersAddAssignment);
+}
 //getAssignments():Observable<Assignment[]>{                         //ReSTORE this to work without URL
 //  return of(this.assignments);
 //}
@@ -68,4 +85,11 @@ getAssignments():Observable<Assignment[]>{
     return this.http.delete(this.url+"/"+assignment._id);
   }
 
+  deleteAllAssignments(): Observable<any> {
+    return this.http.delete(this.url);
+  }
+
+  getAssignmentsPagine(page:number, limit:number):Observable<any> {
+    return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit);
+  }
 }

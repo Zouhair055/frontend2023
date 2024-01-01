@@ -5,6 +5,8 @@
   </button>
   <span class="title">{{ title }}</span>
   <span class="spacer"></span>
+  <button mat-button (click)="deleteAllAssignments()">Vider BD</button>
+  <button mat-button (click)="peuplerBD()">Peupler BD</button>  
   <button mat-button routerLink="/home">Home</button>
   <button mat-button *ngIf="!authService.loggedIn" routerLink="/login">Login</button>
   <button mat-button *ngIf="isLoggedIn" (click)="login()">Logout</button>
@@ -17,7 +19,6 @@
       <a mat-list-item routerLink="assignments-details/:id" (click)="closeSidenav()">Liste assignments</a>
     </mat-nav-list>
   </mat-sidenav>
-
   <mat-sidenav-content>
     <router-outlet></router-outlet>
 
