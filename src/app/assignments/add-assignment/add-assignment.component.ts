@@ -12,7 +12,7 @@ export class AddAssignmentComponent implements OnInit {
 assignments : Assignment[] = [];
   nomDevoir: string = '';
   dateDeRendu!: Date;
-
+//hahna jina bch n9assou l assignment
   constructor(private assignmentsService:AssignmentsService,private router:Router,private authService:AuthService) {}
 
   ngOnInit(): void {}
