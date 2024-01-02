@@ -53,4 +53,16 @@
       Ajouter un devoir
     </button>
   </div>
+
+  <div *ngIf="totalPages > 1">
+    <button class="previous" *ngIf="hasPrevPage" (click)="changePage(prevPage)">Previous</button>
+
+    <form (ngSubmit)="goToPage()" #pageForm="ngForm" class="page-form">
+      <input type="number" id="pageNumber" name="pageNumber" [(ngModel)]="pageNumber" required>
+    </form>
+
+    <span class="page">{{ page }} / {{ totalPages }}</span>
+    <button class="next" *ngIf="hasNextPage" (click)="changePage(nextPage)">Next</button>
+  </div>
+  
 </div>

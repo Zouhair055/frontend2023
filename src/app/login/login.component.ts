@@ -19,12 +19,12 @@ export class LoginComponent {
       this.authService.logIn('admin');
       this.loginSuccess.emit(); 
       this.close.emit(); 
-      this.router.navigate(['/home']);
+      this.router.navigate(['/assignments-details/:id']);
     } else if (this.username === 'user' && this.password === 'user') {
       this.authService.logIn('user');
       this.loginSuccess.emit(); 
       this.close.emit(); 
-      this.router.navigate(['/home']);
+      this.router.navigate(['/assignments-details/:id']);
     }
   }
   constructor(private authService: AuthService, private router:Router) { }

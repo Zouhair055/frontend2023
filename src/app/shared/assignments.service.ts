@@ -88,4 +88,9 @@ peuplerBDavecForkJoin():Observable<any> {
   deleteAllAssignments(): Observable<any> {
     return this.http.delete(this.url);
   }
+  // assignments.service.ts
+getAssignmentsPagine(page: number, limit: number): Observable<any> {
+  return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit);
+}
+
 }

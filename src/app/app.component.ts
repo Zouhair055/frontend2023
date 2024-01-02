@@ -52,11 +52,15 @@ login() {
     this.sidenav.close();
   }
 
+  isAdminLoggedIn(): boolean {
+    return this.authService.loggedIn && this.authService.userRole === 'admin';
+  }
   peuplerBD() {
     this.assignmentsService.peuplerBDavecForkJoin()
       .subscribe(() => {
         console.log("LA BD A ETE PEUPLEE, TOUS LES ASSIGNMENTS AJOUTES, ON RE-AFFICHE LA LISTE");
         window.location.reload();
+        this.router.navigate(['/assignments-details/:id']);
       })
   }
 
@@ -64,6 +68,7 @@ login() {
     this.assignmentsService.deleteAllAssignments().subscribe(() => {
       console.log("Tous les devoirs ont été supprimés");
       window.location.reload();
+      this.router.navigate(['/assignments-details/:id']);
     });
   }
 }

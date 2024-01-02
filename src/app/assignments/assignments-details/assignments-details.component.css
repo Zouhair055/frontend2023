@@ -93,3 +93,48 @@
     z-index: 1;
     background-color: #673ab7;
   }
+  .next {
+    position: fixed;
+    color: #fff; 
+    top: 91%;
+    left: 93%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: #673ab7;
+  }
+  .previous {
+    position: fixed;
+    color: #fff; 
+    top: 91%;
+    left: 89%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: #673ab7;
+  }
+  .page {
+    position: fixed; 
+    top: 80%; 
+    right: 7.5%; 
+    align-self: center;
+    background-color: #673ab7; 
+    color: #fff; 
+    transition: background-color 0.3s ease;
+    transform: translate(-50%, -50%);
+  }
+
+  .page-form {
+    position: fixed; 
+    top: 80%; 
+    right: 4%; 
+    align-self: center;
+    color: #fff; 
+    transition: background-color 0.3s ease;
+    transform: translate(-50%, -50%);
+    display: flex;
+  align-items: center;
+  margin-left: auto;
+  }  
+  .page-form input {
+    margin-right: 5px; /* Ajoute un peu d'espace entre le champ de saisie et le bouton */
+    width: 28px; /* Définir la largeur du champ de saisie selon vos besoins */
+  }

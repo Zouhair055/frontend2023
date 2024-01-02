@@ -1,4 +1,4 @@
-// assignement-details.component.ts
+// assignments-details.component.ts
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from '../../shared/assignments.service';
@@ -12,8 +12,19 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./assignments-details.component.css'],
 })
 export class AssignmentsDetailsComponent implements OnInit {
+  pageNumber: number = 1;
+  // Propriétés pour gérer la pagination
+  page: number = 1;
+  limit: number = 10;
+  totalDocs!: number;
+  totalPages!: number;
+  nextPage!: number;
+  prevPage!: number;
+  hasPrevPage!: boolean;
+  hasNextPage!: boolean;
 
   showDetails = false;
+  assignmentTransmis: Assignment;
 
   toggleDetails() {
     this.showDetails = !this.showDetails;
@@ -28,34 +39,39 @@ export class AssignmentsDetailsComponent implements OnInit {
       this.showDetails = true;
     }
   }
-  
-  @Input() assignmentTransmis: Assignment ;
-  assignments : Assignment[] = [];
-  assignmentSelectionne!:Assignment;
-  private assignmentsSub:Subscription;
+
+  assignments: Assignment[] = [];
+  assignmentSelectionne!: Assignment;
+  private assignmentsSub: Subscription;
+
   constructor(
     private assignmentService: AssignmentsService,
-    private authService:AuthService,
+    private authService: AuthService,
     private route: ActivatedRoute,
-    private router:Router
-  ) {  this.assignmentTransmis = new Assignment();
+    private router: Router
+  ) {
+    this.assignmentTransmis = new Assignment();
     this.assignmentsSub = new Subscription();
-
   }
 
   ngOnInit(): void {
-    //this.assignments = this.assignmentService.getAssignments();
-    this.assignmentService.getAssignments().subscribe((assignments: Assignment[]) => {
-      this.assignments = assignments;
-    });
-    this.assignmentsSub = this.assignmentService.getAssignmentsUpdateListener()
-    .subscribe((assignments : Assignment[])=> {
-      this.assignments = assignments;
-    })
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit)
+      .subscribe(
+        data => {
+          this.assignments = data.docs;
+          this.totalDocs = data.totalDocs;
+          this.totalPages = data.totalPages;
+          this.nextPage = data.nextPage;
+          this.prevPage = data.prevPage;
+          this.hasPrevPage = data.hasPrevPage;
+          this.hasNextPage = data.hasNextPage;
+          console.log("Données reçues: ", this.assignments);
+        }
+      );
   }
 
-  assignmentClique(assignment:Assignment){
-  this.assignmentSelectionne = assignment;
+  assignmentClique(assignment: Assignment) {
+    this.assignmentSelectionne = assignment;
   }
 
   onAssignmentRendu() {
@@ -66,9 +82,7 @@ export class AssignmentsDetailsComponent implements OnInit {
         .subscribe(reponse => {
           console.log("réponse du serveur detail: " + reponse.message);
 
-          // Assurez-vous que this.assignmentTransmis est défini avant de le passer à deleteAssignement
           if (this.assignmentTransmis) {
-            // Supprimez l'ancien devoir de la liste
             this.assignmentService.deleteAssignement(this.assignmentTransmis)
               .subscribe(() => {
                 console.log("Ancien devoir rendu supprimé");
@@ -79,32 +93,53 @@ export class AssignmentsDetailsComponent implements OnInit {
         });
     }
   }
-  
 
   onDelete() {
-    if (this.assignmentTransmis){
-    
-    if (this.authService.userRole !== 'admin') {
-      console.log('Only admins can delete assignments.');
-      return;
+    if (this.assignmentTransmis) {
+
+      if (this.authService.userRole !== 'admin') {
+        console.log('Only admins can delete assignments.');
+        return;
+      }
+
+      this.assignmentService
+        .deleteAssignement(this.assignmentTransmis)
+        .subscribe((reponse) => {
+          console.log("réponse du serveur delet : " + reponse.message);
+          this.router.navigate(['/home']);
+        });
     }
-  
-    this.assignmentService
-      .deleteAssignement(this.assignmentTransmis)
-      .subscribe((reponse) => {
-        console.log("réponse du serveur delet : " + reponse.message);
-        this.router.navigate(['/home']);
-      });
   }
-}
-  
 
   isAdmin(): boolean {
-  return this.authService.loggedIn && this.authService.userRole === 'admin';
+    return this.authService.loggedIn && this.authService.userRole === 'admin';
   }
-  isuser():boolean {
+
+  isuser(): boolean {
     return this.authService.loggedIn;
   }
 
-  
+  changePage(page: number): void {
+    this.page = page;
+
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit)
+      .subscribe(
+        data => {
+          this.assignments = data.docs;
+          this.totalDocs = data.totalDocs;
+          this.totalPages = data.totalPages;
+          this.nextPage = data.nextPage;
+          this.prevPage = data.prevPage;
+          this.hasPrevPage = data.hasPrevPage;
+          this.hasNextPage = data.hasNextPage;
+          console.log("Données reçues: ", this.assignments);
+        }
+      );
+      
+  }
+  goToPage(): void {
+    if (this.pageNumber && this.pageNumber >= 1 && this.pageNumber <= this.totalPages) {
+      this.changePage(this.pageNumber);
+    }
+  }
 }
