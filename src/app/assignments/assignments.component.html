@@ -3,12 +3,12 @@
 <main class="container1">
   <div class="center-content">
     <div class="AjouterBtn">
-      <a routerLink="/add-assignment">
-        <button mat-flat-button color="accent" class="submit-button2">
+      <a [routerLink]="isUserLoggedIn ? '/add-assignment' : ''">
+        <button mat-flat-button color="accent" class="submit-button2" [disabled]="!isUserLoggedIn" (click)="onAddAssignmentClick()">
           Ajouter Assignment
         </button>
-    </a>
-  </div>
+      </a>
+    </div>
 
   <h1>Gestion Des Devoirs</h1>
   <mat-list *ngFor="let a of assignments">

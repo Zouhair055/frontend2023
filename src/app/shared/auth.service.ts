@@ -1,38 +1,53 @@
-import { Injectable } from '@angular/core';
+// auth.service.ts
+import { Injectable } from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  loggedIn=false;
-  userRole: string = '';
 
-  setUserRole(role: string) {
-    this.userRole = role;
-  }
+  public users = [
+    { username: 'admin', password: 'admin', role: 'admin' },
+    { username: 'zakaria', password: 'zakaria', role: 'user' },
+    { username: 'zouhair', password: 'zouhair', role: 'user' },
+    // ... autres utilisateurs
+  ];
 
-  constructor() { }
+  loggedIn = false;
+  currentUser: any;
+  userRole: string = '';  // Ajoutez cette ligne
 
-  logIn(userRole: string) {
-    this.loggedIn = true;
-    this.userRole = userRole;
+  logIn(username: string, password: string) {
+    const user = this.users.find(u => u.username === username && u.password === password);
+    if (user) {
+      this.loggedIn = true;
+      this.currentUser = user;
+      this.userRole = user.role;  // Initialisez la propriété userRole
+      return true;
+    }
+    return false;
   }
 
   logOut() {
     this.loggedIn = false;
+    this.currentUser = null;
+    this.userRole = '';  // Réinitialisez également userRole
   }
 
-  isAdmin() {
-    const isUserAdmin = new Promise((resolve, reject) => {
-      resolve(this.loggedIn);
-    });
-    return isUserAdmin;
-  }
-  isuser() {
-    const isUser = new Promise((resolve, reject) => {
-      resolve(this.loggedIn);
-    });
-    return isUser;
+  isLogged(): boolean {
+    return this.loggedIn;
   }
   
+
+  isAdmin(): boolean {
+    return this.loggedIn && this.userRole === 'admin';
+  }
+  
+  isuser(): boolean {
+    return this.loggedIn;
+  }
+
+  constructor() {
+    this.loggedIn = false;
+  }
 }
