@@ -138,3 +138,26 @@
     margin-right: 5px; /* Ajoute un peu d'espace entre le champ de saisie et le bouton */
     width: 28px; /* Définir la largeur du champ de saisie selon vos besoins */
   }
+
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .table-container {
+    width: 50%;
+  }
+  
+  .details-container {
+    width: 50%;
+  }
+  
+  .mat-table {
+    width: 100%; /* Forcer la largeur du tableau à 100% */
+  }
+
+  .button-container1 {
+    bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  }

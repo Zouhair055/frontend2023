@@ -1,12 +1,33 @@
+<!-- add-assignment.component.html -->
 <div class="container2">
   <form ngForm (submit)="onSubmit(); assignmentForm.reset()" #assignmentForm class="form">
     <mat-form-field class="form-field">
       <input matInput [(ngModel)]="nomDevoir" name="nom" placeholder="Nom du devoir" required>
     </mat-form-field>
+
     <mat-form-field class="form-field" appearance="fill">
       <input matInput [matDatepicker]="picker" placeholder="Date de rendu" [(ngModel)]="dateDeRendu" name="date" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-select [(ngModel)]="matiere" name="matiere" placeholder="Matière">
+        <mat-option *ngFor="let option of matieres" [value]="option">{{ option }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input matInput [(ngModel)]="auteur" name="auteur" placeholder="Auteur" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input matInput [(ngModel)]="note" name="note" placeholder="Note"  type="number">
+      <mat-error *ngIf="noteErrorMessage">{{ noteErrorMessage }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <textarea matInput [(ngModel)]="remarques" name="remarques" placeholder="Remarques"></textarea>
     </mat-form-field>
 
     <button mat-stroked-button color="primary" class="submit-button">

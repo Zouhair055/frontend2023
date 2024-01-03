@@ -1,5 +1,6 @@
 /* Styles for container2 */
 .container2 {
+  top: 25%;
   display: flex;
   justify-content: center;
   align-items: center; 
@@ -34,4 +35,18 @@
 
 .submit-button:hover {
   background-color: #673ab7;
+}
+
+
+/* style dial hadchi jdid */
+.container2 {
+  position: relative; /* Assurez-vous que le conteneur est positionné de manière relative */
+  z-index: 1; /* Assurez-vous que le formulaire est au-dessus d'autres éléments */
+}
+
+.form {
+  width: 100%; /* Définissez la largeur du formulaire à 100% */
+  max-width: 400px; /* Définissez une largeur maximale pour le formulaire */
+  margin: 0 auto; /* Centrez le formulaire horizontalement */
+  margin-top: 50px;
 }

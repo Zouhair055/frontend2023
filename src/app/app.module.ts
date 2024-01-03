@@ -30,6 +30,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './shared/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 
@@ -78,6 +80,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     MatTableModule,
+    MatSelectModule
   ],
   providers: [
     AuthService,
