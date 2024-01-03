@@ -15,16 +15,15 @@ export class LoginComponent {
   @Output() loginSuccess = new EventEmitter<void>();
 
   onSubmit() {
-    if (this.username === 'admin' && this.password === 'admin') {
-      this.authService.logIn('admin');
-      this.loginSuccess.emit(); 
-      this.close.emit(); 
+    const isLoginSuccessful = this.authService.logIn(this.username, this.password);
+  
+    if (isLoginSuccessful) {
+      this.loginSuccess.emit();
+      this.close.emit();
+      // Redirigez l'utilisateur vers la page souhaitée après la connexion
       this.router.navigate(['/assignments-details/:id']);
-    } else if (this.username === 'user' && this.password === 'user') {
-      this.authService.logIn('user');
-      this.loginSuccess.emit(); 
-      this.close.emit(); 
-      this.router.navigate(['/assignments-details/:id']);
+    } else {
+      // Gérez le cas où la connexion échoue, par exemple, en affichant un message d'erreur.
     }
   }
   constructor(private authService: AuthService, private router:Router) { }

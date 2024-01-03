@@ -1,3 +1,4 @@
+// auth.guard.ts
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -13,16 +14,6 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-    return this.authService.isAdmin()
-      .then(authentifie => {
-        if (authentifie) {
-          console.log("navigation autorisée !")
-          return true;
-        } else {
-          console.log("navigation non permise !")
-          this.router.navigate(['/login']);
-          return false;
-        }
-      });
+    return true;  // Autoriser l'accès à la route pour tous les utilisateurs
   }
 }

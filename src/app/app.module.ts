@@ -29,6 +29,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './shared/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+
 
 
 
@@ -75,6 +77,7 @@ const routes: Routes = [
     MatToolbarModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
+    MatTableModule,
   ],
   providers: [
     AuthService,

@@ -13,6 +13,8 @@ import { Subscription } from 'rxjs';
 })
 export class AssignmentsDetailsComponent implements OnInit {
   pageNumber: number = 1;
+  userLoggedIn: boolean = false;
+
   // Propriétés pour gérer la pagination
   page: number = 1;
   limit: number = 10;
@@ -31,12 +33,14 @@ export class AssignmentsDetailsComponent implements OnInit {
   }
 
   onAssignmentClick(assignment: Assignment) {
-    if (this.assignmentTransmis === assignment) {
-      this.toggleDetails();
-    } else {
-      this.assignmentTransmis = assignment;
-      this.assignmentSelectionne = assignment;
-      this.showDetails = true;
+    if (this.authService.isLogged()) {  // Vérifiez si l'utilisateur est connecté
+      if (this.assignmentTransmis === assignment) {
+        this.toggleDetails();
+      } else {
+        this.assignmentTransmis = assignment;
+        this.assignmentSelectionne = assignment;
+        this.showDetails = true;
+      }
     }
   }
 
@@ -55,6 +59,8 @@ export class AssignmentsDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('Rôle de l\'utilisateur:', this.authService.userRole);
+
     this.assignmentService.getAssignmentsPagine(this.page, this.limit)
       .subscribe(
         data => {
@@ -89,7 +95,7 @@ export class AssignmentsDetailsComponent implements OnInit {
               });
           }
 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/assignements-details/:id']);
         });
     }
   }
@@ -97,8 +103,8 @@ export class AssignmentsDetailsComponent implements OnInit {
   onDelete() {
     if (this.assignmentTransmis) {
 
-      if (this.authService.userRole !== 'admin') {
-        console.log('Only admins can delete assignments.');
+      if (!this.authService.isAdmin()) {
+        console.log('Seuls les administrateurs peuvent supprimer des devoirs.');
         return;
       }
 
@@ -106,17 +112,17 @@ export class AssignmentsDetailsComponent implements OnInit {
         .deleteAssignement(this.assignmentTransmis)
         .subscribe((reponse) => {
           console.log("réponse du serveur delet : " + reponse.message);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/assignments-details/:id']);
         });
     }
   }
 
   isAdmin(): boolean {
-    return this.authService.loggedIn && this.authService.userRole === 'admin';
+    return this.authService.isAdmin();
   }
 
   isuser(): boolean {
-    return this.authService.loggedIn;
+    return this.authService.isLogged();
   }
 
   changePage(page: number): void {
@@ -135,7 +141,7 @@ export class AssignmentsDetailsComponent implements OnInit {
           console.log("Données reçues: ", this.assignments);
         }
       );
-      
+
   }
   goToPage(): void {
     if (this.pageNumber && this.pageNumber >= 1 && this.pageNumber <= this.totalPages) {

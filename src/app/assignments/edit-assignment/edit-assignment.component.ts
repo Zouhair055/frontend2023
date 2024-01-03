@@ -58,7 +58,7 @@ onSaveAssignment() {
           });
       }
 
-      this.router.navigate(['/home']);
+      this.router.navigate(['/assignments-details/:id']);
     });
 }
 }
