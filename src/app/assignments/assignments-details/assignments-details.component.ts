@@ -1,5 +1,6 @@
 // assignments-details.component.ts
-import { Component, Input, OnInit } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from '../../shared/assignments.service';
 import { AuthService } from 'src/app/shared/auth.service';
@@ -60,10 +61,21 @@ export class AssignmentsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Rôle de l\'utilisateur:', this.authService.userRole);
+    this.refreshAssignments();
 
+    // S'abonner à l'événement d'ajout de devoir
+    this.assignmentService.assignmentAdded$.subscribe(() => {
+      this.refreshAssignments();
+    });
+    
+    
+  }
+
+  refreshAssignments() {
     this.assignmentService.getAssignmentsPagine(this.page, this.limit)
       .subscribe(
         data => {
+          console.log("Liste des devoirs mise à jour: ", data);
           this.assignments = data.docs;
           this.totalDocs = data.totalDocs;
           this.totalPages = data.totalPages;
@@ -71,7 +83,7 @@ export class AssignmentsDetailsComponent implements OnInit {
           this.prevPage = data.prevPage;
           this.hasPrevPage = data.hasPrevPage;
           this.hasNextPage = data.hasNextPage;
-          console.log("Données reçues: ", this.assignments);
+          console.log("Liste des devoirs mise à jour: ", this.assignments);
         }
       );
   }
@@ -92,6 +104,7 @@ export class AssignmentsDetailsComponent implements OnInit {
             this.assignmentService.deleteAssignement(this.assignmentTransmis)
               .subscribe(() => {
                 console.log("Ancien devoir rendu supprimé");
+                this.refreshAssignments(); // Mise à jour après la suppression
               });
           }
 
@@ -102,7 +115,6 @@ export class AssignmentsDetailsComponent implements OnInit {
 
   onDelete() {
     if (this.assignmentTransmis) {
-
       if (!this.authService.isAdmin()) {
         console.log('Seuls les administrateurs peuvent supprimer des devoirs.');
         return;
@@ -112,7 +124,7 @@ export class AssignmentsDetailsComponent implements OnInit {
         .deleteAssignement(this.assignmentTransmis)
         .subscribe((reponse) => {
           console.log("réponse du serveur delet : " + reponse.message);
-          this.router.navigate(['/assignments-details/:id']);
+          this.refreshAssignments(); // Mise à jour après la suppression
         });
     }
   }
@@ -141,8 +153,8 @@ export class AssignmentsDetailsComponent implements OnInit {
           console.log("Données reçues: ", this.assignments);
         }
       );
-
   }
+
   goToPage(): void {
     if (this.pageNumber && this.pageNumber >= 1 && this.pageNumber <= this.totalPages) {
       this.changePage(this.pageNumber);

@@ -20,23 +20,40 @@ url = "http://localhost:8010/api/assignments";
 getAssignments():Observable<Assignment[]>{
     return this.http.get<Assignment[]>(this.url);
 }
+private assignmentAdded = new Subject<void>();
+emitAssignmentAddedEvent() {
+  this.assignmentAdded.next();
+}
+assignmentAdded$ = new Subject<void>();
 
-
-peuplerBDavecForkJoin():Observable<any> {
-  let appelsVersAddAssignment:Observable<any>[] = [];
+peuplerBDavecForkJoin(): Observable<any> {
+  let appelsVersAddAssignment: Observable<any>[] = [];
 
   assignmentsData.forEach(a => {
     const nouvelAssignment = new Assignment();
     nouvelAssignment.id = a.id;
     nouvelAssignment.nom = a.nom;
     nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
-    nouvelAssignment.rendu = a.rendu;
+    nouvelAssignment.rendu = a.rendu as boolean;
+    nouvelAssignment.auteur = a.auteur;
+    nouvelAssignment.note = a.note;
+    nouvelAssignment.remarques = a.remarques;
+    nouvelAssignment.matiere = a.matiere;
 
-    appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment))
+    const observable = this.addAssignment(nouvelAssignment);
+
+    // Émettez un événement après chaque ajout de devoir
+    observable.subscribe(() => {
+      this.assignmentAdded$.next();
+    });
+
+    appelsVersAddAssignment.push(observable);
   });
 
   return forkJoin(appelsVersAddAssignment);
 }
+
+
 //getAssignments():Observable<Assignment[]>{                         //ReSTORE this to work without URL
 //  return of(this.assignments);
 //}

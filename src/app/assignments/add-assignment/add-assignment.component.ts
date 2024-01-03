@@ -5,6 +5,7 @@ import { Assignment } from '../assignment.model';
 import { AuthService } from 'src/app/shared/auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-add-assignment',
   templateUrl: './add-assignment.component.html',
@@ -20,10 +21,16 @@ export class AddAssignmentComponent implements OnInit {
   noteErrorMessage: string = '';
   remarques: string = '';
   matieres: string[] = ['Base de données', 'Analyse financière', 'Ingénierie des exigences', 'Communication', 'Anglais'];
+  assignmentsDetailsComponent: any;
 
+  
   constructor(private assignmentsService: AssignmentsService, private router: Router, private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.assignmentsService.getAssignments().subscribe((assignments) => {
+      this.assignments = assignments;
+    });
+  }
 
   isAdmin(): boolean {
     return this.authService.loggedIn;
@@ -49,21 +56,21 @@ export class AddAssignmentComponent implements OnInit {
     }
   
     const newAssignment = new Assignment();
-    newAssignment.id = Math.floor(Math.random() * 100000000);
-    newAssignment.nom = this.nomDevoir;
-    newAssignment.dateDeRendu = this.dateDeRendu;
-    newAssignment.rendu = false;
-    newAssignment.auteur = this.auteur;
-    newAssignment.matiere = this.matiere;
-    newAssignment.note = this.note;
-    newAssignment.remarques = this.remarques;
-  
-    this.assignments.push(newAssignment);
-    this.assignmentsService.addAssignment(newAssignment).subscribe((reponse) => {
-      console.log("Réponse du serveur add: " + reponse.message);
-      this.router.navigate(['/assignments-details/:id']);
-    });
+newAssignment.id = Math.floor(Math.random() * 100000000);
+newAssignment.nom = this.nomDevoir;
+newAssignment.dateDeRendu = this.dateDeRendu;
+newAssignment.rendu = false;
+newAssignment.auteur = this.auteur;  // Assurez-vous que this.auteur est correctement défini depuis le formulaire
+newAssignment.matiere = this.matiere;  // Assurez-vous que this.matiere est correctement défini depuis le formulaire
+newAssignment.note = this.note;  // Assurez-vous que this.note est correctement défini depuis le formulaire
+newAssignment.remarques = this.remarques;  // Assurez-vous que this.remarques est correctement défini depuis le formulaire
+
+console.log("Nouvel assignment ajouté :", newAssignment);
+
+this.assignmentsService.addAssignment(newAssignment).subscribe((reponse) => {
+  console.log("Réponse du serveur add: ", reponse.message);
+  this.router.navigate(['/assignments-details/:id']);
+  this.assignmentsService.assignmentAdded$.next(); // Émettez un événement pour informer les abonnés (refreshAssignments)
+});
   }
-  
-  
-}
+  }

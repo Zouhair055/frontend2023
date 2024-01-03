@@ -1,3 +1,4 @@
+<!-- assignment-detail.component.html -->
 <div class="page-container container3">
   <div class="flex-container">
     <!-- Tableau -->
@@ -9,7 +10,25 @@
           <th mat-header-cell *matHeaderCellDef>Date de Rendu</th>
           <td mat-cell *matCellDef="let assignment">{{ assignment.dateDeRendu | date }}</td>
         </ng-container>
-
+        <ng-container matColumnDef="auteur">
+          <th mat-header-cell *matHeaderCellDef>Auteur</th>
+          <td mat-cell *matCellDef="let assignment">{{ assignment.auteur }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="matiere">
+          <th mat-header-cell *matHeaderCellDef>Matière</th>
+          <td mat-cell *matCellDef="let assignment">{{ assignment.matiere }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="note">
+          <th mat-header-cell *matHeaderCellDef>Note</th>
+          <td mat-cell *matCellDef="let assignment">{{ assignment.note }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="remarques">
+          <th mat-header-cell *matHeaderCellDef>Remarques</th>
+          <td mat-cell *matCellDef="let assignment">{{ assignment.remarques }}</td>
+        </ng-container>
         <!-- Colonne Nom -->
         <ng-container matColumnDef="nom">
           <th mat-header-cell *matHeaderCellDef>Nom</th>
@@ -28,8 +47,9 @@
         </ng-container>
 
         <!-- Lignes de la table -->
-        <tr mat-header-row *matHeaderRowDef="['dateDeRendu', 'nom']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['dateDeRendu', 'nom'];"></tr>
+        <tr mat-header-row *matHeaderRowDef="['dateDeRendu', 'nom', 'auteur', 'matiere', 'note', 'remarques']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['dateDeRendu', 'nom', 'auteur', 'matiere', 'note', 'remarques'];"></tr>
+
       </table>
     </div>
 
