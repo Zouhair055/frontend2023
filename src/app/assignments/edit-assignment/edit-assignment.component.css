@@ -40,3 +40,12 @@
   text-align: center;
   margin-top: 2vh;
 }
+
+
+.form {
+  top: 50%;
+  width: 100%; /* Définissez la largeur du formulaire à 100% */
+  max-width: 400px; /* Définissez une largeur maximale pour le formulaire */
+  margin: 0 auto; /* Centrez le formulaire horizontalement */
+  margin-top: 30vh;
+}

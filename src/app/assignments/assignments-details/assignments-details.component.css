@@ -1,3 +1,5 @@
+/* assignments-details.component.css */
+
 /* Styles for container3 */
 .container3 {
   display: flex;
@@ -5,159 +7,184 @@
   justify-content: flex-start;
   align-items: left;
 }
-  
-  
 
-  .assignment-list {
-    margin-left: 200px;
-  }
-  
-  .assignment-item {
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .assignment-item:hover {
-    background-color: #f8f8f8; 
-  }
-  
-  .rendu-text {
-    color: #ffffff; 
-    background-color: #673ab7;
-  }
-  
-  .non-rendu-text {
-    color: #000000; 
-  }
-  
-  .selected-assignment {
-    text-align: center;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
+.assignment-list {
+  margin-left: 200px;
+}
+
+.assignment-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.assignment-item:hover {
+  background-color: #f8f8f8;
+}
+
+.rendu-text {
+  color: #ffffff;
+  background-color: #673ab7;
+}
+
+.non-rendu-text {
+  color: #000000;
+}
+
+.selected-assignment {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 .card-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-  }
-  
-  .checkbox {
-    color: #ffffff;
-    background-color: #673ab7;
-    line-height: 36px;
-    font-weight: 500;
-    padding: 0 16px;
-    border-radius: 4px;
-    margin-right: 20px; 
-  }
-  
-  .edit-button {
-    margin-right: 10px;
-  }
-  
-  .delete-button {
-    color: #ffffff;
-    background-color: #673ab7;
-    margin-left: 20px; 
-  }
-  
-  
-  .edit-button:hover,
-  .delete-button:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-  }
-  
-  .submit-button1 {
-    position: fixed; 
-    top: 100px; 
-    right: 75px; 
-    
-    align-self: center;
-    margin-top: 15px;
-    background-color: #673ab7; 
-    color: #fff; 
-    transition: background-color 0.3s ease;
-  }
-  .show-details {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    z-index: 1;
-    background-color: #673ab7;
-  }
-  .next {
-    position: fixed;
-    color: #fff; 
-    top: 91%;
-    left: 93%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    background-color: #673ab7;
-  }
-  .previous {
-    position: fixed;
-    color: #fff; 
-    top: 91%;
-    left: 87%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    background-color: #673ab7;
-  }
-  .page {
-    position: fixed; 
-    top: 80%; 
-    right: 7.5%; 
-    align-self: center;
-    background-color: #673ab7; 
-    color: #fff; 
-    transition: background-color 0.3s ease;
-    transform: translate(-50%, -50%);
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
 
-  .page-form {
-    position: fixed; 
-    top: 80%; 
-    right: 4%; 
-    align-self: center;
-    color: #fff; 
-    transition: background-color 0.3s ease;
-    transform: translate(-50%, -50%);
-    display: flex;
+.checkbox {
+  margin-top: 10px;
+  color: #ffffff;
+  background-color: #673ab7;
+  line-height: 36px;
+  font-weight: 500;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.edit-button {
+  margin-right: 10px;
+}
+
+.delete-button {
+  color: #ffffff;
+  background-color: #673ab7;
+  margin-left: 20px;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.submit-button1 {
+  position: fixed;
+  top: 100px;
+  right: 75px;
+  align-self: center;
+  margin-top: 15px;
+  background-color: #673ab7;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.show-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  z-index: 1;
+  background-color: #673ab7;
+}
+
+.next {
+  position: fixed;
+  color: #fff;
+  top: 91%;
+  left: 93%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: #673ab7;
+}
+
+.previous {
+  position: fixed;
+  color: #fff;
+  top: 91%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: #673ab7;
+}
+
+.page {
+  position: fixed;
+  top: 80%;
+  right: 7.5%;
+  align-self: center;
+  background-color: #673ab7;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.page-form {
+  position: fixed;
+  top: 80%;
+  right: 4%;
+  align-self: center;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  transform: translate(-50%, -50%);
+  display: flex;
   align-items: center;
   margin-left: auto;
-  }  
-  .page-form input {
-    margin-right: 5px; /* Ajoute un peu d'espace entre le champ de saisie et le bouton */
-    width: 28px; /* Définir la largeur du champ de saisie selon vos besoins */
-  }
+}
 
-  .flex-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .table-container {
-    width: 50%;
-  }
-  
-  .details-container {
-    width: 50%;
-  }
-  
-  .mat-table {
-    width: 100%; /* Forcer la largeur du tableau à 100% */
-  }
+.page-form input {
+  margin-right: 5px;
+  width: 28px;
+}
 
-  .button-container1 {
-    bottom: 0;
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-container {
+  width: 50%;
+}
+
+.details-container {
+  width: 50%;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.button-container1 {
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  }
+}
+
+
+/* Ajoutez ceci à la fin de votre fichier CSS */
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer horizontalement */
+  text-align: center; /* Centrer le texte horizontalement */
+}
+
+.detail-item {
+  margin-bottom: 10px; /* Espacement entre les détails */
+}
+
+.checkbox {
+  margin-top: 10px;
+  color: #ffffff;
+  background-color: #673ab7;
+  line-height: 36px;
+  font-weight: 500;
+  padding: 0 16px;
+  border-radius: 4px;
+}
