@@ -28,6 +28,13 @@ export class AddAssignmentComponent implements OnInit {
     'Communication': 'assets/Communicationimg.jpg',
     'Programmation avancée': 'assets/Programmation avancéimg.jpg',
   };
+  matieresWithImagess : { [key: string]: string } = {
+    'JavaScript et html': 'assets/Angularm.png',
+    'SGBD': 'assets/SGBDm.jpg',
+    'Ingénierie des exigences': 'assets/ingenierm.jpg',
+    'Communication': 'assets/Com.jpeg',
+    'Programmation avancée': 'assets/javam.png',
+  };
   
   assignmentsDetailsComponent: any;
 
