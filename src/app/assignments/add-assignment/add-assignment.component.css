@@ -50,3 +50,8 @@
   margin: 0 auto; /* Centrez le formulaire horizontalement */
   margin-top: 50px;
 }
+
+.matiere-image {
+  width: 20px; /* Ajustez la taille de l'image selon vos besoins */
+  margin-right: 5px; /* Espace entre l'image et le texte de l'option */
+}

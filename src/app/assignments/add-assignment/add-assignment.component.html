@@ -11,11 +11,22 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field class="form-field">
+    <!--<mat-form-field class="form-field">
       <mat-select [(ngModel)]="matiere" name="matiere" placeholder="Matière">
         <mat-option *ngFor="let option of matieres" [value]="option">{{ option }}</mat-option>
       </mat-select>
+    </mat-form-field>-->
+    <mat-form-field class="form-field">
+      <mat-select [(ngModel)]="matiere" name="matiere" placeholder="Matière">
+        <mat-option *ngFor="let option of matieres" [value]="option">
+          <img *ngIf="matieresWithImages[option]" [src]="matieresWithImages[option]" alt="Matière Image" class="matiere-image">
+          {{ option }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+    <div *ngIf="matieresWithImages[matiere]">
+      <img [src]="matieresWithImages[matiere]" alt="Matière Image" class="matiere-image-preview">
+    </div>
 
     <mat-form-field class="form-field">
       <input matInput [(ngModel)]="auteur" name="auteur" placeholder="Auteur" required>

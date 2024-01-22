@@ -20,7 +20,15 @@ export class AddAssignmentComponent implements OnInit {
   note: number = 0;
   noteErrorMessage: string = '';
   remarques: string = '';
-  matieres: string[] = ['Base de données', 'Analyse financière', 'Ingénierie des exigences', 'Communication', 'Anglais'];
+  matieres: string[] = ['JavaScript et html', 'SGBD', 'Ingénierie des exigences', 'Communication', 'Programmation avancée'];
+  matieresWithImages : { [key: string]: string } = {
+    'JavaScript et html': 'assets/JavaScript et htmlimg.jpg',
+    'SGBD': 'assets/SGBDimg.jpg',
+    'Ingénierie des exigences': 'assets/Ingenierie des exigencesimg.png',
+    'Communication': 'assets/Communicationimg.jpg',
+    'Programmation avancée': 'assets/Programmation avancéimg.jpg',
+  };
+  
   assignmentsDetailsComponent: any;
 
   
