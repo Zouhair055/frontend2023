@@ -56,14 +56,14 @@ export class AddAssignmentComponent implements OnInit {
     }
   
     const newAssignment = new Assignment();
-newAssignment.id = Math.floor(Math.random() * 100000000);
-newAssignment.nom = this.nomDevoir;
-newAssignment.dateDeRendu = this.dateDeRendu;
-newAssignment.rendu = false;
-newAssignment.auteur = this.auteur;  // Assurez-vous que this.auteur est correctement défini depuis le formulaire
-newAssignment.matiere = this.matiere;  // Assurez-vous que this.matiere est correctement défini depuis le formulaire
-newAssignment.note = this.note;  // Assurez-vous que this.note est correctement défini depuis le formulaire
-newAssignment.remarques = this.remarques;  // Assurez-vous que this.remarques est correctement défini depuis le formulaire
+        newAssignment.id = Math.floor(Math.random() * 100000000);
+        newAssignment.nom = this.nomDevoir;
+        newAssignment.dateDeRendu = this.dateDeRendu;
+        newAssignment.rendu = false;
+        newAssignment.auteur = this.auteur;  // Assurez-vous que this.auteur est correctement défini depuis le formulaire
+        newAssignment.matiere = this.matiere;  // Assurez-vous que this.matiere est correctement défini depuis le formulaire
+        newAssignment.note = this.note;  // Assurez-vous que this.note est correctement défini depuis le formulaire
+        newAssignment.remarques = this.remarques;  // Assurez-vous que this.remarques est correctement défini depuis le formulaire
 
 console.log("Nouvel assignment ajouté :", newAssignment);
 
