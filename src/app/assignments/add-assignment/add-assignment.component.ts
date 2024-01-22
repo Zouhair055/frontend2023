@@ -24,15 +24,15 @@ export class AddAssignmentComponent implements OnInit {
   matieresWithImages : { [key: string]: string } = {
     'JavaScript et html': 'assets/JavaScript et htmlimg.jpg',
     'SGBD': 'assets/SGBDimg.jpg',
-    'Ingénierie des exigences': 'assets/Ingenierie des exigencesimg.png',
+    'Ingénierie des exigences': 'assets/Ingenierie des exigencesimg.jpg',
     'Communication': 'assets/Communicationimg.jpg',
     'Programmation avancée': 'assets/Programmation avancéimg.jpg',
   };
   matieresWithImagess : { [key: string]: string } = {
     'JavaScript et html': 'assets/Angularm.png',
-    'SGBD': 'assets/SGBDm.jpg',
+    'SGBD': 'assets/SGBDm.png',
     'Ingénierie des exigences': 'assets/ingenierm.jpg',
-    'Communication': 'assets/Com.jpeg',
+    'Communication': 'assets/Com.jpg',
     'Programmation avancée': 'assets/javam.png',
   };
   
