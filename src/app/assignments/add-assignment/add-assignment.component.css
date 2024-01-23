@@ -6,6 +6,9 @@
   align-items: center; 
   height: 10vh; 
   padding: 10%;
+  margin-top: 50px;
+  position: relative; /* Assurez-vous que le conteneur est positionné de manière relative */
+  z-index: 1; /* Assurez-vous que le formulaire est au-dessus d'autres éléments */
 }
 
 .form {
@@ -16,6 +19,10 @@
   padding: 20px;
   background-color: #fff; /* White background color */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift effect */
+  width: 100%; /* Définissez la largeur du formulaire à 100% */
+  max-width: 400px; /* Définissez une largeur maximale pour le formulaire */
+  margin: 0 auto; /* Centrez le formulaire horizontalement */
+  margin-top: 50px;
 }
 
 .form-field {
@@ -37,21 +44,81 @@
   background-color: #673ab7;
 }
 
-
-/* style dial hadchi jdid */
-.container2 {
-  position: relative; /* Assurez-vous que le conteneur est positionné de manière relative */
-  z-index: 1; /* Assurez-vous que le formulaire est au-dessus d'autres éléments */
-}
-
-.form {
-  width: 100%; /* Définissez la largeur du formulaire à 100% */
-  max-width: 400px; /* Définissez une largeur maximale pour le formulaire */
-  margin: 0 auto; /* Centrez le formulaire horizontalement */
-  margin-top: 50px;
-}
-
 .matiere-image {
   width: 20px; /* Ajustez la taille de l'image selon vos besoins */
   margin-right: 5px; /* Espace entre l'image et le texte de l'option */
+}
+
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Tailles des cercles */
+.large {
+  height: 60px;
+  width: 60px;
+}
+
+.medium {
+  height: 120px;
+  width: 120px;
+}
+
+.small {
+  height: 40px;
+  width: 40px;
+}
+
+/* Couleurs des cercles */
+.blue {
+  background-color: #3498db;
+}
+
+.purple {
+  background-color: #9b59b6;
+}
+
+.green {
+  background-color: #2ecc71;
+}
+
+.red {
+  background-color: #e74c3c;
+}
+
+.yellow {
+  background-color: #f1c40f;
+}
+
+.orange {
+  background-color: #f39c12;
+}
+
+/* Positions des cercles */
+.top {
+  top: 0%;
+}
+
+.bottom {
+  bottom: 0%;
+}
+
+.left {
+  left: -15px;
+}
+
+.right {
+  right: -15px;
+}
+
+.half-top {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.half-bottom {
+  bottom: 40%;
+  transform: translateY(50%);
 }

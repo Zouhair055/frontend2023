@@ -35,7 +35,6 @@ import { MatSelectModule } from '@angular/material/select';
 
 
 
-
 const routes: Routes = [
   { path: '', component: AssignmentsComponent },
   { path: 'home', component: AssignmentsComponent },
@@ -57,7 +56,7 @@ const routes: Routes = [
     RenduDirective,
     AddAssignmentComponent,
     EditAssignmentComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

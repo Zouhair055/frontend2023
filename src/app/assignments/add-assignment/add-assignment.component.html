@@ -1,5 +1,7 @@
 <!-- add-assignment.component.html -->
 <div class="container2">
+  <div class="circle large blue left top"></div>
+  <div class="circle medium purple left bottom"></div>
   <form ngForm (submit)="onSubmit(); assignmentForm.reset()" #assignmentForm class="form">
     <mat-form-field class="form-field">
       <input matInput [(ngModel)]="nomDevoir" name="nom" placeholder="Nom du devoir" required>
@@ -10,12 +12,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-
-    <!--<mat-form-field class="form-field">
-      <mat-select [(ngModel)]="matiere" name="matiere" placeholder="Matière">
-        <mat-option *ngFor="let option of matieres" [value]="option">{{ option }}</mat-option>
-      </mat-select>
-    </mat-form-field>-->
+    
     <mat-form-field class="form-field">
       <mat-select [(ngModel)]="matiere" name="matiere" placeholder="Matière">
         <mat-option *ngFor="let option of matieres" [value]="option">
@@ -45,4 +42,8 @@
       Ajouter un devoir
     </button>
   </form>
+  <div class="circle small green right top"></div>
+  <div class="circle large red right bottom"></div>
+  <div class="circle small yellow left half-top"></div>
+  <div class="circle medium orange right half-bottom"></div>
 </div>
