@@ -50,12 +50,86 @@ button.mat-flat-button:hover {
 
 .submit-button2 {
   position: fixed; 
-  top: 100px; 
-  right: 75px; 
+  top: 130px; 
+  right: 45%; 
   
   align-self: center;
   margin-top: 15px;
   background-color: #673ab7; 
   color: #fff; 
   transition: background-color 0.3s ease;
+}
+
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Tailles des cercles */
+.large {
+  height: 60px;
+  width: 60px;
+}
+
+.medium {
+  height: 120px;
+  width: 120px;
+}
+
+.small {
+  height: 40px;
+  width: 40px;
+}
+
+/* Couleurs des cercles */
+.blue {
+  background-color: #3498db;
+}
+
+.purple {
+  background-color: #9b59b6;
+}
+
+.green {
+  background-color: #2ecc71;
+}
+
+.red {
+  background-color: #e74c3c;
+}
+
+.yellow {
+  background-color: #f1c40f;
+}
+
+.orange {
+  background-color: #f39c12;
+}
+
+/* Positions des cercles */
+.top {
+  top: 0%;
+}
+
+.bottom {
+  bottom: 0%;
+}
+
+.left {
+  left: 0px;
+}
+
+.right {
+  right: 0px;
+}
+
+.half-top {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.half-bottom {
+  bottom: 40%;
+  transform: translateY(50%);
 }
