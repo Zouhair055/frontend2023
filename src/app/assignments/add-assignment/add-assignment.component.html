@@ -16,7 +16,7 @@
     <mat-form-field class="form-field">
       <mat-select [(ngModel)]="matiere" name="matiere" placeholder="Matière">
         <mat-option *ngFor="let option of matieres" [value]="option">
-          <img *ngIf="matieresWithImages[option]" [src]="matieresWithImagess[option]" alt="Matière Image" class="matiere-image">
+          <img *ngIf="matieresWithImagess[option]" [src]="matieresWithImagess[option]" alt="Matière Image" class="matiere-image">
           {{ option }}
         </mat-option>
       </mat-select>

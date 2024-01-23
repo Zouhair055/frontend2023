@@ -22,4 +22,6 @@ export class Assignment {
   matiere: string = '';
   note: number = 0;
   remarques: string = '';
+  professeurImage: string = '';
+
 }

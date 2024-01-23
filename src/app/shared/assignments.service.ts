@@ -10,6 +10,13 @@ import { assignmentsData } from './data';
   providedIn: 'root'
 })
 export class AssignmentsService {
+  matieresWithImages : { [key: string]: string } = {
+    'JavaScript et html': 'assets/JavaScript et htmlimg.jpg',
+    'SGBD': 'assets/SGBDimg.jpg',
+    'Ingénierie des exigences': 'assets/Ingenierie des exigencesimg.jpg',
+    'Communication': 'assets/Communicationimg.jpg',
+    'Programmation avancée': 'assets/Programmation avancéimg.jpg',
+  };
   assignments:Assignment[] = [];
   private assignmentsUpdated = new Subject<Assignment[]>();
   constructor(private logginService:LoggingService,
@@ -106,8 +113,19 @@ peuplerBDavecForkJoin(): Observable<any> {
     return this.http.delete(this.url);
   }
   // assignments.service.ts
-getAssignmentsPagine(page: number, limit: number): Observable<any> {
-  return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit);
-}
+// getAssignmentsPagine(page: number, limit: number): Observable<any> {
+//   return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit);
+// }
 
+getAssignmentsPagine(page: number, limit: number): Observable<any> {
+  return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit)
+    .pipe(
+      tap((data) => {
+        // Après avoir récupéré les devoirs, mettez à jour la propriété professeurImage
+        data.docs.forEach((assignment: Assignment) => {
+          assignment.professeurImage = this.matieresWithImages[assignment.matiere] || '';
+        });
+      })
+    );
+}
 }

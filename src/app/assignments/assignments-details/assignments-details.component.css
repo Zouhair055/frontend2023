@@ -188,3 +188,8 @@
   padding: 0 16px;
   border-radius: 4px;
 }
+
+.professeur-image {
+  width: 100px; /* Ajustez la taille de l'image selon vos besoins */
+  margin-top: 10px; /* Espace entre l'image du professeur et les autres détails */
+}

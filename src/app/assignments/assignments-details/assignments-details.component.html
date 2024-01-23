@@ -48,6 +48,10 @@
           <strong>Matière:</strong> {{ assignmentSelectionne.matiere }}
         </div>
         <div class="detail-item">
+          <!--<strong>Image du professeur:</strong>-->
+          <img *ngIf="assignmentSelectionne && assignmentSelectionne.professeurImage" [src]="assignmentSelectionne.professeurImage" alt="Professeur Image" class="professeur-image">
+        </div>
+        <div class="detail-item">
           <strong>Note:</strong> {{ assignmentSelectionne.note }}
         </div>
         <div class="detail-item">
