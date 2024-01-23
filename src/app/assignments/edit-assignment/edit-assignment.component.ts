@@ -16,6 +16,14 @@ export class EditAssignmentComponent implements OnInit {
  matiere!: string;
  note!: number;
  remarques!: string;
+ matieres: string[] = ['JavaScript et html', 'SGBD', 'Ingénierie des exigences', 'Communication', 'Programmation avancée'];
+ matieresWithImagess : { [key: string]: string } = {
+  'JavaScript et html': 'assets/Angularm.png',
+  'SGBD': 'assets/SGBDm.png',
+  'Ingénierie des exigences': 'assets/ingenierm.jpg',
+  'Communication': 'assets/Com.jpg',
+  'Programmation avancée': 'assets/javam.png',
+};
 
  constructor(
    private assignmentsService: AssignmentsService,
