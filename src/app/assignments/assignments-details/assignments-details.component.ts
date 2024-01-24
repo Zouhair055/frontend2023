@@ -87,6 +87,11 @@ export class AssignmentsDetailsComponent implements OnInit {
         }
       );
   }
+  
+  
+  
+  
+  
 
   assignmentClique(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
