@@ -6,13 +6,16 @@ import { AssignmentsService } from '../../shared/assignments.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { Assignment } from '../assignment.model';
 import { Subscription } from 'rxjs';
+import { OnDestroy } from '@angular/core';
+
 
 @Component({
   selector: 'app-assignments-details',
   templateUrl: './assignments-details.component.html',
   styleUrls: ['./assignments-details.component.css'],
 })
-export class AssignmentsDetailsComponent implements OnInit {
+export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
+  private searchSubscription!: Subscription;
   pageNumber: number = 1;
   userLoggedIn: boolean = false;
 
@@ -28,6 +31,30 @@ export class AssignmentsDetailsComponent implements OnInit {
 
   showDetails = false;
   assignmentTransmis: Assignment;
+  searchTerm: string = '';
+
+
+  ngOnDestroy(): void {
+    // N'oubliez pas de désabonner pour éviter les fuites de mémoire
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+  }
+  onSearchChange() {
+    console.log('Search term changed:', this.searchTerm);
+    this.refreshAssignments();
+  }
+  
+
+  matchesSearch(assignment: Assignment): boolean {
+    if (!this.searchTerm) return true;
+  
+    const searchTermLower = this.searchTerm.toLowerCase().trim();
+    const assignmentNameLower = assignment.nom.toLowerCase().trim();
+    const match = assignmentNameLower.includes(searchTermLower);
+  
+    return match;
+  }
 
   toggleDetails() {
     this.showDetails = !this.showDetails;
@@ -68,24 +95,31 @@ export class AssignmentsDetailsComponent implements OnInit {
       this.refreshAssignments();
     });
     
-    
+    this.searchSubscription = this.assignmentService.getAssignmentsUpdateListener().subscribe((assignments) => {
+      this.assignments = assignments;
+    });
   }
 
   refreshAssignments() {
-    this.assignmentService.getAssignmentsPagine(this.page, this.limit)
-      .subscribe(
-        data => {
-          console.log("Liste des devoirs mise à jour: ", data);
-          this.assignments = data.docs;
-          this.totalDocs = data.totalDocs;
-          this.totalPages = data.totalPages;
-          this.nextPage = data.nextPage;
-          this.prevPage = data.prevPage;
-          this.hasPrevPage = data.hasPrevPage;
-          this.hasNextPage = data.hasNextPage;
-          console.log("Liste des devoirs mise à jour: ", this.assignments);
-        }
-      );
+    console.log('Refreshing assignments with search term:', this.searchTerm);
+  this.assignmentService.getAssignmentsPagine(this.page, this.limit, this.searchTerm)
+    .subscribe(
+    data => {
+      console.log("Liste des devoirs mise à jour: ", data);
+      this.assignments = data.docs;
+      this.totalDocs = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.nextPage = data.nextPage;
+      this.prevPage = data.prevPage;
+      this.hasPrevPage = data.hasPrevPage;
+      this.hasNextPage = data.hasNextPage;
+      console.log("Liste des devoirs mise à jour: ", this.assignments);
+    },
+    error => {
+      console.error("Erreur lors de la recherche des devoirs :", error);
+      // Gérer l'erreur selon vos besoins
+    }
+);
   }
   
   
@@ -144,8 +178,8 @@ export class AssignmentsDetailsComponent implements OnInit {
 
   changePage(page: number): void {
     this.page = page;
-
-    this.assignmentService.getAssignmentsPagine(this.page, this.limit)
+  
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit, this.searchTerm)
       .subscribe(
         data => {
           this.assignments = data.docs;
@@ -156,6 +190,10 @@ export class AssignmentsDetailsComponent implements OnInit {
           this.hasPrevPage = data.hasPrevPage;
           this.hasNextPage = data.hasNextPage;
           console.log("Données reçues: ", this.assignments);
+        },
+        error => {
+          console.error("Erreur lors de la recherche des devoirs :", error);
+          // Gérer l'erreur selon vos besoins
         }
       );
   }

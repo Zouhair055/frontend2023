@@ -117,17 +117,29 @@ peuplerBDavecForkJoin(): Observable<any> {
 //   return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit);
 // }
 
-getAssignmentsPagine(page: number, limit: number): Observable<any> {
-  return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit)
+getAssignmentsPagine(page: number, limit: number, searchTerm: string): Observable<any> {
+  let params = new HttpParams()
+    .set('page', page.toString())
+    .set('limit', limit.toString());
+
+  if (searchTerm) {
+    params = params.set('searchTerm', searchTerm);
+  }
+
+  return this.http.get<any>(this.url, { params })
     .pipe(
       tap((data) => {
         // Après avoir récupéré les devoirs, mettez à jour la propriété professeurImage
         data.docs.forEach((assignment: Assignment) => {
           assignment.professeurImage = this.matieresWithImages[assignment.matiere] || '';
         });
-      })
+        // Émettre les résultats mis à jour uniquement si la recherche est terminée avec succès
+        this.assignmentsUpdated.next(data.docs);
+      }),
+      catchError(this.handleError<any>('getAssignmentsPagine'))
     );
 }
+
 
 
 }
