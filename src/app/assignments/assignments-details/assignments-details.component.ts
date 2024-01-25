@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 import { Assignment } from '../assignment.model';
 import { Subscription } from 'rxjs';
 import { OnDestroy } from '@angular/core';
+import { SearchService } from '../../shared/search.service';
 
 
 @Component({
@@ -41,10 +42,7 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
       this.searchSubscription.unsubscribe();
     }
   }
-  onSearchChange() {
-    console.log('Filter changed:', this.renduFilter);
-    this.refreshAssignments();
-  }
+  
   
   onFilterChange() {
     console.log('Filter changed:', this.renduFilter);
@@ -106,7 +104,9 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
     private assignmentService: AssignmentsService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private searchService: SearchService
+
   ) {
     this.assignmentTransmis = new Assignment();
     this.assignmentsSub = new Subscription();
@@ -121,8 +121,9 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
       this.refreshAssignments();
     });
     
-    this.searchSubscription = this.assignmentService.getAssignmentsUpdateListener().subscribe((assignments) => {
-      this.assignments = assignments;
+    this.searchSubscription = this.searchService.searchTerm$.subscribe((searchTerm) => {
+      this.searchTerm = searchTerm;
+      this.refreshAssignments();
     });
   }
 

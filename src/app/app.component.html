@@ -4,6 +4,10 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="title">{{ title }}</span>
+  <div class="recherche">
+    <input type="text" placeholder="Rechercher..." [(ngModel)]="searchTerm" (input)="onSearchChange()">
+    <button mat-stroked-button class="recherche" (click)="onSearchChange()">Rechercher</button>
+  </div>
   <span class="spacer"></span>
   <button mat-button routerLink="/home">Home</button>
   <div>

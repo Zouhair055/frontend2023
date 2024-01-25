@@ -196,3 +196,26 @@ align-items: center;}
 .hidden {
   display: none;
 }
+
+
+.recherche {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 82px;
+  left: 650px;
+  background-color: #673ab7;
+    color: #fff;
+
+}
+
+.recherche input {
+  margin-right: 8px;  /* Ajustez la marge selon vos besoins pour espacer le champ de texte du bouton */
+  position: fixed;
+  top: 90px;
+  left: 480px;
+  align-self: center;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  
+}

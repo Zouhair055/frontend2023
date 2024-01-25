@@ -37,17 +37,13 @@
   </td>
 </ng-container>
         
-
         <!-- Lignes de la table -->
         <tr mat-header-row *matHeaderRowDef="['dateDeRendu', 'rendu', 'nom']"></tr>
         <tr mat-row *matRowDef="let row; columns: ['dateDeRendu', 'rendu', 'nom'];" [class.hidden]="searchTerm && !matchesSearch(row) || (renduFilter !== null && !matchesFilter(row))"></tr>
 
       </table>
 </div>
-    <div>
-      <input type="text" placeholder="Rechercher..." [(ngModel)]="searchTerm" (input)="onSearchChange()">
-      <button mat-button (click)="onSearchChange()">Rechercher</button>
-    </div>
+
     <!-- Affichage des détails -->
     <div *ngIf="showDetails" class="details-container">
       <mat-card *ngIf="assignmentSelectionne" class="selected-assignment">

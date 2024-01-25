@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './shared/auth.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AssignmentsService } from './shared/assignments.service';
+import { SearchService } from './shared/search.service';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,18 @@ import { AssignmentsService } from './shared/assignments.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  searchTerm: string = '';
+
+  onSearchChange(): void {
+    this.searchService.setSearchTerm(this.searchTerm);
+  }
   title = 'Application de gestion des assignments !!!';
 
   get isLoggedIn(): boolean {
     return this.authService.loggedIn;
   }
 
-  constructor(public authService: AuthService, private router: Router, private assignmentsService: AssignmentsService) {}
+  constructor(public authService: AuthService, private router: Router, private assignmentsService: AssignmentsService, private searchService: SearchService) {}
 
   
 login() {
