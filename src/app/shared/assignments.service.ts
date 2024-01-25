@@ -117,22 +117,16 @@ peuplerBDavecForkJoin(): Observable<any> {
 //   return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit);
 // }
 
-getAssignmentsPagine(page: number, limit: number, searchTerm: string, renduFilter: boolean | null): Observable<any> {
-  console.log('Filter in service:', renduFilter);
-
+getAssignmentsPagine(page: number, limit: number, searchTerm: string, renduFilter: string): Observable<any> {
   let params = new HttpParams()
     .set('page', page.toString())
     .set('limit', limit.toString());
 
-  if (searchTerm) {
+  if (searchTerm && renduFilter) {
     params = params.set('searchTerm', searchTerm);
+    // true ou false
+    params = params.set('renduFilter', renduFilter);
   }
-
-  if (renduFilter !== null) {
-    // Utiliser le filtre rendu uniquement si la valeur est définie à true ou false
-    params = params.set('rendu', renduFilter ? 'true' : 'false');
-  }
-
   return this.http.get<any>(this.url, { params })
     .pipe(
       tap((data) => {
@@ -146,6 +140,7 @@ getAssignmentsPagine(page: number, limit: number, searchTerm: string, renduFilte
       catchError(this.handleError<any>('getAssignmentsPagine'))
     );
 }
+
 
 
 

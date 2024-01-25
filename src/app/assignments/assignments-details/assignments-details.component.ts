@@ -15,7 +15,6 @@ import { OnDestroy } from '@angular/core';
   styleUrls: ['./assignments-details.component.css'],
 })
 export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
-  renduFilter: boolean | null = null;
 
   private searchSubscription!: Subscription;
   pageNumber: number = 1;
@@ -34,10 +33,10 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   showDetails = false;
   assignmentTransmis: Assignment;
   searchTerm: string = '';
+  renduFilter:string = "" ;
 
 
   ngOnDestroy(): void {
-    // N'oubliez pas de désabonner pour éviter les fuites de mémoire
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
     }
@@ -48,7 +47,9 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   }
   
   onFilterChange() {
+    console.log('Filter changed:', this.renduFilter);
     this.refreshAssignments();
+    
   }
   matchesSearch(assignment: Assignment): boolean {
     if (!this.searchTerm) return true;
@@ -59,6 +60,28 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   
     return match;
   }
+  matchesFilter(assignment: Assignment): boolean {
+    try {
+      if (this.renduFilter === null || this.renduFilter === undefined) {
+        return true;
+      }
+      const renduFilterLower = String(this.renduFilter).toLowerCase().trim();
+      const assignmentRenduLower = String(assignment.rendu).toLowerCase().trim();
+      if (renduFilterLower === 'true' && assignmentRenduLower === 'true') {
+        return true;
+      } else if (renduFilterLower === 'false' && assignmentRenduLower === 'false') {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.error("Error in matchesFilter:", error);
+      return false;
+    }
+  }
+  
+
+  
   toggleDetails() {
     this.showDetails = !this.showDetails;
   }
@@ -126,6 +149,7 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
         }
       );
   }
+  
   
   
   
