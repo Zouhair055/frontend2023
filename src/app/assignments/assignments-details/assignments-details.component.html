@@ -11,26 +11,35 @@
           <td mat-cell *matCellDef="let assignment">{{ assignment.dateDeRendu | date }}</td>
         </ng-container>
 
-        <!-- Colonne Nom -->
-        <ng-container matColumnDef="nom">
-          <th mat-header-cell *matHeaderCellDef>Nom</th>
-          <td mat-cell *matCellDef="let assignment">
-            <a routerLink="/assignments-details/{{assignment.id}}" (click)="onAssignmentClick(assignment)">
-              <span appRendu *ngIf="assignment.rendu; else nomsoumis" class="rendu-text">
-                {{assignment.nom}}
-              </span>
-              <ng-template #nomsoumis>
-                <span class="non-rendu-text">
-                  {{assignment.nom}}
-                </span>
-              </ng-template>
-            </a>
-          </td>
-        </ng-container>
+<!-- Colonne Rendu -->
+<ng-container matColumnDef="rendu">
+  <th mat-header-cell *matHeaderCellDef>Rendu</th>
+  <td mat-cell *matCellDef="let assignment">
+    {{ assignment.rendu ? 'Oui' : 'Non' }}
+  </td>
+</ng-container>
+
+<!-- Colonne Nom -->
+<ng-container matColumnDef="nom">
+  <th mat-header-cell *matHeaderCellDef>Nom</th>
+  <td mat-cell *matCellDef="let assignment">
+    <a routerLink="/assignments-details/{{assignment.id}}" (click)="onAssignmentClick(assignment)">
+      <span appRendu *ngIf="assignment.rendu; else nomsoumis" class="rendu-text">
+        {{ assignment.nom }}
+      </span>
+      <ng-template #nomsoumis>
+        <span class="non-rendu-text">
+          {{ assignment.nom }}
+        </span>
+      </ng-template>
+    </a>
+  </td>
+</ng-container>
+        
 
         <!-- Lignes de la table -->
-        <tr mat-header-row *matHeaderRowDef="['dateDeRendu', 'nom']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['dateDeRendu', 'nom'];" [class.hidden]="searchTerm && !matchesSearch(row)"></tr>
+        <tr mat-header-row *matHeaderRowDef="['dateDeRendu', 'rendu', 'nom']"></tr>
+<tr mat-row *matRowDef="let row; columns: ['dateDeRendu', 'rendu', 'nom'];" [class.hidden]="searchTerm && !matchesSearch(row)"></tr>
       </table>
 </div>
     <div>
@@ -102,5 +111,15 @@
     <button mat-stroked-button color="primary" class="next" *ngIf="hasNextPage" (click)="changePage(nextPage)">
       Next
     </button>
+  </div>
+  <div class="filter-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Filtre Rendu</mat-label>
+      <mat-select [(ngModel)]="renduFilter" (selectionChange)="onFilterChange()">
+        <mat-option [value]="null">Tous</mat-option>
+        <mat-option [value]="true">Rendus</mat-option>
+        <mat-option [value]="false">Non Rendus</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 </div>

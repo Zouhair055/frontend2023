@@ -15,6 +15,8 @@ import { OnDestroy } from '@angular/core';
   styleUrls: ['./assignments-details.component.css'],
 })
 export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
+  renduFilter: boolean | null = null;
+
   private searchSubscription!: Subscription;
   pageNumber: number = 1;
   userLoggedIn: boolean = false;
@@ -41,11 +43,13 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
     }
   }
   onSearchChange() {
-    console.log('Search term changed:', this.searchTerm);
+    console.log('Filter changed:', this.renduFilter);
     this.refreshAssignments();
   }
   
-
+  onFilterChange() {
+    this.refreshAssignments();
+  }
   matchesSearch(assignment: Assignment): boolean {
     if (!this.searchTerm) return true;
   
@@ -55,7 +59,6 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   
     return match;
   }
-
   toggleDetails() {
     this.showDetails = !this.showDetails;
   }
@@ -101,26 +104,30 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   }
 
   refreshAssignments() {
-    console.log('Refreshing assignments with search term:', this.searchTerm);
-  this.assignmentService.getAssignmentsPagine(this.page, this.limit, this.searchTerm)
-    .subscribe(
-    data => {
-      console.log("Liste des devoirs mise à jour: ", data);
-      this.assignments = data.docs;
-      this.totalDocs = data.totalDocs;
-      this.totalPages = data.totalPages;
-      this.nextPage = data.nextPage;
-      this.prevPage = data.prevPage;
-      this.hasPrevPage = data.hasPrevPage;
-      this.hasNextPage = data.hasNextPage;
-      console.log("Liste des devoirs mise à jour: ", this.assignments);
-    },
-    error => {
-      console.error("Erreur lors de la recherche des devoirs :", error);
-      // Gérer l'erreur selon vos besoins
-    }
-);
+    console.log('Refreshing assignments with search term and rendu filter:', this.searchTerm, this.renduFilter);
+    
+    // Ensure that this.renduFilter is properly initialized before passing it
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit, this.searchTerm, this.renduFilter)
+      .subscribe(
+        data => {
+          console.log("Liste des devoirs mise à jour: ", data);
+          this.assignments = data.docs;
+          this.totalDocs = data.totalDocs;
+          this.totalPages = data.totalPages;
+          this.nextPage = data.nextPage;
+          this.prevPage = data.prevPage;
+          this.hasPrevPage = data.hasPrevPage;
+          this.hasNextPage = data.hasNextPage;
+          console.log("Liste des devoirs mise à jour: ", this.assignments);
+        },
+        error => {
+          console.error("Erreur lors de la recherche des devoirs :", error);
+          // Gérer l'erreur selon vos besoins
+        }
+      );
   }
+  
+  
   
   
   
@@ -179,7 +186,7 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   changePage(page: number): void {
     this.page = page;
   
-    this.assignmentService.getAssignmentsPagine(this.page, this.limit, this.searchTerm)
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit, this.searchTerm, this.renduFilter)
       .subscribe(
         data => {
           this.assignments = data.docs;

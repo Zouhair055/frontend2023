@@ -117,13 +117,20 @@ peuplerBDavecForkJoin(): Observable<any> {
 //   return this.http.get<any>(this.url + '?page=' + page + '&limit=' + limit);
 // }
 
-getAssignmentsPagine(page: number, limit: number, searchTerm: string): Observable<any> {
+getAssignmentsPagine(page: number, limit: number, searchTerm: string, renduFilter: boolean | null): Observable<any> {
+  console.log('Filter in service:', renduFilter);
+
   let params = new HttpParams()
     .set('page', page.toString())
     .set('limit', limit.toString());
 
   if (searchTerm) {
     params = params.set('searchTerm', searchTerm);
+  }
+
+  if (renduFilter !== null) {
+    // Utiliser le filtre rendu uniquement si la valeur est définie à true ou false
+    params = params.set('rendu', renduFilter ? 'true' : 'false');
   }
 
   return this.http.get<any>(this.url, { params })
@@ -139,6 +146,7 @@ getAssignmentsPagine(page: number, limit: number, searchTerm: string): Observabl
       catchError(this.handleError<any>('getAssignmentsPagine'))
     );
 }
+
 
 
 
