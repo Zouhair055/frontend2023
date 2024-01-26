@@ -36,7 +36,19 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   searchTerm: string = '';
   renduFilter:string = "" ;
 
+  onSearchChange(): void {
+    this.searchService.setSearchTerm(this.searchTerm);
+  }
+  onFilterChange() {
+    console.log('Filter changed:', this.renduFilter);
+    this.refreshAssignments();
+    
+  }
+  title = 'Application de gestion des assignments !!!';
 
+  get isLoggedIn(): boolean {
+    return this.authService.loggedIn;
+  }
   ngOnDestroy(): void {
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
@@ -44,11 +56,7 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   }
   
   
-  onFilterChange() {
-    console.log('Filter changed:', this.renduFilter);
-    this.refreshAssignments();
-    
-  }
+  
   matchesSearch(assignment: Assignment): boolean {
     if (!this.searchTerm) return true;
   

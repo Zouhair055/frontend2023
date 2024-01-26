@@ -43,7 +43,10 @@
 
       </table>
 </div>
-
+<div class="recherche">
+  <input type="text" placeholder="Rechercher..." [(ngModel)]="searchTerm" (input)="onSearchChange()">
+  <button mat-stroked-button class="recherche" (click)="onSearchChange()">Rechercher</button>
+</div>
     <!-- Affichage des détails -->
     <div *ngIf="showDetails" class="details-container">
       <mat-card *ngIf="assignmentSelectionne" class="selected-assignment">

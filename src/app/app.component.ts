@@ -13,11 +13,6 @@ import { SearchService } from './shared/search.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  searchTerm: string = '';
-
-  onSearchChange(): void {
-    this.searchService.setSearchTerm(this.searchTerm);
-  }
   title = 'Application de gestion des assignments !!!';
 
   get isLoggedIn(): boolean {
