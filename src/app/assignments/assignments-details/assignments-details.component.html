@@ -113,10 +113,20 @@
       Next
     </button>
   </div>
-  <div class="filter-container">
+ <!-- <div class="filter-container">
     <mat-form-field appearance="fill">
       <mat-label>Filtre Rendu</mat-label>
       <mat-select [(ngModel)]="renduFilter" (selectionChange)="onFilterChange()" >
+        <mat-option [value]="null">Tous</mat-option>
+        <mat-option [value]="true">Rendus</mat-option>
+        <mat-option [value]="false">Non Rendus</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>-->
+  <div class="filter-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Filtre Rendu</mat-label>
+      <mat-select [(ngModel)]="renduFilter" (selectionChange)="onFilterChange()">
         <mat-option [value]="null">Tous</mat-option>
         <mat-option [value]="true">Rendus</mat-option>
         <mat-option [value]="false">Non Rendus</mat-option>

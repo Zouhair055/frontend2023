@@ -20,6 +20,8 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   private searchSubscription!: Subscription;
   pageNumber: number = 1;
   userLoggedIn: boolean = false;
+  //pour le filtre
+  renduFilter: any = null;
 
   // Propriétés pour gérer la pagination
   page: number = 1;
@@ -34,7 +36,7 @@ export class AssignmentsDetailsComponent implements OnInit, OnDestroy  {
   showDetails = false;
   assignmentTransmis: Assignment;
   searchTerm: string = '';
-  renduFilter:string = "" ;
+  //renduFilter:string = "" ;
 
   onSearchChange(): void {
     this.searchService.setSearchTerm(this.searchTerm);
