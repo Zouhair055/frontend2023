@@ -44,6 +44,11 @@
     transition: margin 0.3s;
   }
   
-
+/**/
+/* styles.css (ou styles.scss) */
+.shifted-content {
+  margin-left: 240px; /* Ajustez la valeur selon la largeur de votre sidebar */
+  transition: margin-left 0.3s ease; /* Ajoutez une transition pour une animation fluide */
+}
 
 

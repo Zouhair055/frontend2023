@@ -21,7 +21,7 @@
       <a mat-list-item routerLink="assignments-details/:id" (click)="closeSidenav()">Liste assignments</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content [class.shifted-content]="sidenav.opened">
     <router-outlet></router-outlet>
 
     <app-login *ngIf="showLoginDialog" (close)="closeLoginDialog()" (loginSuccess)="onLoginSuccess()">
