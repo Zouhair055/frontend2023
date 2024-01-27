@@ -1,22 +1,18 @@
-# Angular : rendu n°2
+# Angular : PROJET FINAL
 Repository où déposer le projet n°2 Angular
 
 ### Nom[^1] : DKHISSI
 
 ### Prénom[^2] : ZOUHAIR
 
-## A faire[^3]
-- [ ] Suivre le cours jusqu'à la page 180
-- [ ] Intégrer toolbar et navbar du rendu n°1
-- [ ] Identification par **login/password**
-  - ajouter un tableau de login/password/role (avec rôle qui est soit **user** soit **admin**) dans le service d'authentification
-  - modifier le code pour avoir `isLogged()` **ET** `isAdmin()` au lieu de juste `isAdmin()`
-- [ ] Au lieu du slider `LogIn`, ajouter un bouton connecter (avec une *mat-icon* adaptée) qui amène à un composant avec un formulaire de connexion
-- [ ] Gestion des droits :
-  - L'admin peut éditer et effacer les assignment
-  - Le user peut voir le détail des assignment
-  - Si on n'est pas logué on ne peut ni voir le détail, ni éditer
+### Nom[^1] : HASSAD
 
+### Prénom[^2] : ZAKARIA
+
+## Connexion
+{ username: 'admin', password: 'admin', role: 'admin' },
+{ username: 'zakaria', password: 'zakaria', role: 'user' },
+{ username: 'zouhair', password: 'zouhair', role: 'user' },
 
 [^1]: à remplir
 [^2]: à remplir
