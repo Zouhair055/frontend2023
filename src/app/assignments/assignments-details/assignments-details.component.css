@@ -221,3 +221,35 @@ align-items: center;}
   transition: background-color 0.3s ease;
   z-index:-1;
 }
+
+/* styles.css (ou styles.scss) */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Tailles des cercles */
+.small {
+  height: 40px;
+  width: 40px;
+}
+
+.medium {
+  height: 80px;
+  width: 80px;
+}
+
+/* Couleurs des cercles */
+.blue {
+  background-color: #3498db;
+}
+
+.purple {
+  background-color: #9b59b6;
+}
+
+/**/
+.fixed-details {
+  max-width: 400px; /* Ajustez la largeur maximale selon vos besoins */
+  margin: 0 auto; /* Centrez horizontalement */
+}

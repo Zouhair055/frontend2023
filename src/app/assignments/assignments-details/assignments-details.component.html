@@ -1,6 +1,7 @@
 <!-- assignments-details.component.html -->
 
 <div class="page-container container3">
+  
   <div class="flex-container">
     <!-- Tableau -->
     <div class="table-container">
@@ -48,7 +49,7 @@
   <button mat-stroked-button class="recherche" (click)="onSearchChange()">Rechercher</button>
 </div>
     <!-- Affichage des détails -->
-    <div *ngIf="showDetails" class="details-container">
+    <div *ngIf="showDetails" class="details-container ">
       <mat-card *ngIf="assignmentSelectionne" class="selected-assignment">
         <mat-card-title>{{ assignmentSelectionne.nom }}</mat-card-title>
         <mat-card-subtitle>{{ assignmentSelectionne.dateDeRendu | date }}</mat-card-subtitle>
