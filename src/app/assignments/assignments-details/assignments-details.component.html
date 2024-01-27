@@ -94,11 +94,7 @@
     </div>
   </div>
 
-  <div class="button-container1">
-    <button mat-stroked-button color="primary" class="submit-button1" routerLink="/add-assignment">
-      Ajouter un devoir
-    </button>
-  </div>
+
 
   <div *ngIf="totalPages > 1" class="mat-pagination-container">
     <button mat-stroked-button color="primary" class="previous" *ngIf="hasPrevPage" (click)="changePage(prevPage)">

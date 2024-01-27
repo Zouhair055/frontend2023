@@ -158,12 +158,6 @@ align-items: center;}
   width: 100%;
 }
 
-.button-container1 {
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 
 /* Ajoutez ceci à la fin de votre fichier CSS */
 
