@@ -22,6 +22,7 @@ Bienvenue dans le dépôt du Projet Angular final réalisé par l'équipe compos
 ## Note :
 Merci de se connecter en tant qu'Admin dans la page "Login" pour voir toutes les fonctionnalités.
 ## Vous trouverez un petit Video, illustrant un demo, sur comment notre application marche avec les fonctionnalités implémentés
+Notre application contient énormément d'autres fonctionnalités que vous pourrez découvrir.
 En cas de problème, n'hésitez pas à contacter l'équipe du projet:
 
 ## Zouhair DKHISSI <zouhair.dkhissi@etu.univ-cotedazur.fr>;
