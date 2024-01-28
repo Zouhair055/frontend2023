@@ -14,6 +14,8 @@ Bienvenue dans le dépôt du Projet Angular final réalisé par l'équipe compos
 ## Lien Backend : https://back-end-2023-angular.onrender.com/api/assignments
 ## Lien Frontend : https://zesty-arithmetic-32e811.netlify.app
 
+## Pour le GitHub Front: https://github.com/Zouhair055/frontend2023
+## Pour le GitHub Back:  https://github.com/Zouhair055/backend2023
 [^1]: à remplir
 [^2]: à remplir
 
