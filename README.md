@@ -1,19 +1,28 @@
 # Angular : PROJET FINAL
-Repository où déposer le projet n°2 Angular
+Bienvenue dans le dépôt du Projet Angular final réalisé par l'équipe composée de :
 
-### Nom[^1] : DKHISSI
+### Nom[^1] : DKHISSI ### Prénom[^2] : ZOUHAIR
 
-### Prénom[^2] : ZOUHAIR
-
-### Nom[^1] : HASSAD
-
-### Prénom[^2] : ZAKARIA
-
-## Connexion
+### Nom[^1] : HASSAD ### Prénom[^2] : ZAKARIA
+ 
+## Connexion Utilisez les informations suivantes pour vous connecter à l'application
+## Notament l'utilisateur "admin" qui a tous les droits:
 { username: 'admin', password: 'admin', role: 'admin' },
 { username: 'zakaria', password: 'zakaria', role: 'user' },
 { username: 'zouhair', password: 'zouhair', role: 'user' },
 
+## Lien Backend : https://back-end-2023-angular.onrender.com/api/assignments
+## Lien Frontend : https://zesty-arithmetic-32e811.netlify.app
+
 [^1]: à remplir
 [^2]: à remplir
-[^3]: vous pouvez cocher les tâches qui ont été faites en utilisant la syntaxe `[x]` dans le markdown
+
+## Note :
+Merci de se connecter en tant qu'Admin dans la page "Login" pour voir toutes les fonctionnalités.
+## Vous trouverez un petit Video, illustrant un demo, sur comment notre application marche avec les fonctionnalités implémentés
+En cas de problème, n'hésitez pas à contacter l'équipe du projet:
+
+## Zouhair DKHISSI <zouhair.dkhissi@etu.univ-cotedazur.fr>;
+## Zakaria Hassad <zakaria.hassad@etu.univ-cotedazur.fr>;
+
+Bon développement !
